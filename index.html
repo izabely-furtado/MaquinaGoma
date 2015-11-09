@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Maquinagoma by izabely-furtado</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Maquinagoma</h1>
+        <p>Exercicio 1 de 8 da Lista de Padrões de Projeto</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/izabely-furtado/MaquinaGoma" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/izabely-furtado/MaquinaGoma/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/izabely-furtado/MaquinaGoma/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h3>
+<a id="diagrama-do-padrão-state-implementado" class="anchor" href="#diagrama-do-padr%C3%A3o-state-implementado" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Diagrama do Padrão State Implementado</strong>
+</h3>
+
+<p><img src="https://github.com/izabely-furtado/MaquinaGoma/blob/master/diagramas/Padr%C3%A3o%20State%20Implementado.png?raw=true" alt=""></p>
+
+<h3>
+<a id="explicação-da-implantação-do-método" class="anchor" href="#explica%C3%A7%C3%A3o-da-implanta%C3%A7%C3%A3o-do-m%C3%A9todo" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Explicação da Implantação do Método</strong>
+</h3>
+
+<p>Aplicando a teoria sobre state, nota-se no diagrama o encapsulamento de cada estado indicado em uma classe, e para a alteração o estado da classe contexto vamos ter uma ação invocada (+solicitaGoma(moeda : int)) de acordo com o fluxo indicado no exercício.</p>
+
+<p>E como implementaremos isso?</p>
+
+<p>Primeiro vamos ter que criar uma interface para os estados que será implementado pela classe MaquinaState como abstrata e sobreescrita por cada um dos estados.</p>
+
+<ol>
+<li>   public interface IMaquinaState {</li>
+<li>        void solicitaGoma(int moeda);</li>
+<li>   }</li>
+</ol>
+
+<p>Na classe Maquina a função +solicitaGoma de uma forma a qual solicita o pedido de acordo com o estado atual a qual se encontra a máquina, que está descrita da seguinte forma:</p>
+
+<ol>
+<li>   public void solicitaGoma(int moeda) {</li>
+<li>        this.meuEstado.solicitaGoma(moeda);</li>
+<li>        System.out.println(this.meuEstado.toString());</li>
+<li>   }</li>
+</ol>
+
+<p>Já nos estados concretos, esta função é chamada de uma forma a qual processe o dado a partir de um determinado ponto e encaminhe para o próximo estado, da seguinte forma, na classe RecebeMoeda, por exemplo:</p>
+
+<ol>
+<li>    <a href="https://github.com/Override" class="user-mention">@Override</a>
+</li>
+<li>    public void solicitaGoma(int moeda) {</li>
+<li><br></li>
+<li>        if (moeda == 1){</li>
+<li>            System.out.println("Acione a Lavanca");</li>
+<li>            this._maquina.setEstado(new GomaVendida(this._maquina));</li>
+<li>            this._maquina.solicitaGoma(moeda);</li>
+<li>        }</li>
+<li>        else{</li>
+<li>           System.out.println("Moeda inadequada inserida");</li>
+<li>           this._maquina.setEstado(new SemMoeda(this._maquina));</li>
+<li>           this._maquina.solicitaGoma(moeda);</li>
+<li>       }</li>
+<li>   }</li>
+</ol>
+
+<p>Os pontos importantes que deve-se observar são:</p>
+
+<ul>
+<li><p>A variável privada da classe Maquina;</p></li>
+<li><p>Os construtores que recebem como parâmetro um objeto da classe Maquina.</p></li>
+</ul>
+
+<p>A variável _maquina representar nossa classe contexto dentro do estado e vai ser utilizado para todas as alterações e consulta de valores da Maquina.</p>
+
+<p>Os construtores recebem a própria classe contexto para a criação do estado.</p>
+
+<p>Como todas as classes que vão representar um possível estado para nossa classe contexto tem um contrato com a interface IMaquinaState podemos criar uma variável na nossa classe a partir dessa interface para representar o estado.</p>
+
+<h3>
+<a id="motivação" class="anchor" href="#motiva%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Motivação</strong>
+</h3>
+
+<p>Em comparação a classe criada sem o padrão, temos uma classe menor  e mais simples, uma vez que a decisão de qual estado ele vai estar depois da chamada dos métodos não cabe mais a classe contexto e sim a cada classe encapsulada que representa um estado do mesmo modo que a execução do método que esta sendo delegado ao estado atual. Devemos observar também que para setarmos qualquer estado estamos utilizamos “MeuEstado = new <a href="%5BContexto%5D">EstadoConcreto</a>”  isso ocorre tanto na criação da classe contexto quanto nas alterações dos estados.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/izabely-furtado">izabely-furtado</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
