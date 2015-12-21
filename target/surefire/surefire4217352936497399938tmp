@@ -1,0 +1,22 @@
+#surefire
+#Mon Dec 21 10:00:34 BRST 2015
+testClassesDirectory=C\:\\Users\\Izabely\\Documents\\GitHub\\MaquinaGoma\\target\\test-classes
+forkMode=once
+classPathUrl.3=C\:\\Users\\Izabely\\.m2\\repository\\org\\hamcrest\\hamcrest-core\\1.1\\hamcrest-core-1.1.jar
+classPathUrl.2=C\:\\Users\\Izabely\\.m2\\repository\\junit\\junit\\4.10\\junit-4.10.jar
+useManifestOnlyJar=true
+classPathUrl.1=C\:\\Users\\Izabely\\Documents\\GitHub\\MaquinaGoma\\target\\classes
+classPathUrl.0=C\:\\Users\\Izabely\\Documents\\GitHub\\MaquinaGoma\\target\\test-classes
+reportsDirectory=C\:\\Users\\Izabely\\Documents\\GitHub\\MaquinaGoma\\target\\surefire-reports
+providerConfiguration=org.apache.maven.surefire.junit4.JUnit4Provider
+testSuiteDefinitionTestSourceDirectory=C\:\\Users\\Izabely\\Documents\\GitHub\\MaquinaGoma\\src\\test\\java
+requestedTest=tddGoma.TestGoma
+surefireClassPathUrl.1=C\:\\Users\\Izabely\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.10\\surefire-api-2.10.jar
+surefireClassPathUrl.0=C\:\\Users\\Izabely\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-junit4\\2.10\\surefire-junit4-2.10.jar
+runOrder=filesystem
+useSystemClassLoader=true
+isTrimStackTrace=true
+enableAssertions=true
+failIfNoTests=true
+includes0=**/tddGoma/TestGoma.java
+childDelegation=false

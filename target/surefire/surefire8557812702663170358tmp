@@ -1,0 +1,9 @@
+#surefire
+#Mon Dec 21 16:55:19 BRST 2015
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.0\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\Izabely\\Documents\\GitHub\\MaquinaGoma
+file.encoding=UTF-8
+localRepository=C\:\\Users\\Izabely\\.m2\\repository
+netbeansProjectMappings=
+basedir=C\:\\Users\\Izabely\\Documents\\GitHub\\MaquinaGoma
+test=tddGoma.TestGoma

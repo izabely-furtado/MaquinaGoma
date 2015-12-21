@@ -31,7 +31,11 @@ public class Maquina {
         }
         this.solicitaGoma(moeda);
     }
-
+    
+    public int getQuantGomas(){
+        return this.quantGomas;
+    }
+    
     public void setMaisGomas(int quantGomas){
         if (quantGomas > 0){
             this.quantGomas += quantGomas;
@@ -45,6 +49,10 @@ public class Maquina {
         this.meuEstado = estado;
     }
     
+    public MaquinaState getEstado(){
+        return this.meuEstado;
+    }
+
     public void getGoma(){
         System.out.println("Pegue sua Goma");
         //alterando o status da maquina
